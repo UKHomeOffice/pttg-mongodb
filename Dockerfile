@@ -1,4 +1,4 @@
-FROM mongo:latest
+FROM mongo:3.2
 
 ENV USER user-pttg-mongodb
 ENV USER_ID 1000
