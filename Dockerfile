@@ -10,7 +10,7 @@ ARG VERSION
 RUN groupadd -r ${GROUP} && \
     useradd -r -u ${USER_ID} -g ${GROUP} ${USER} -d /data && \
     mkdir -p /data && \
-    chown -R ${USER}:${GROUP} /data \
+    chown -R ${USER}:${GROUP} /data && \
     chmod -R 755 /data
 
 
