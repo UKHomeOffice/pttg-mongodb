@@ -1,0 +1,38 @@
+group 'com.agilesoftwareengineers.learn'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'application'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
+
+//todo separate into fatjar task
+jar {
+    manifest {
+        attributes 'Main-Class': 'uk.gov.digital.ho.proving.income.datastore.mongobd.Mongo'
+    }
+    baseName = 'pttg-test-loader-mongodb'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+
+    version =  '0.1.0'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'org.mongodb:mongodb-driver:3.0.4'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.springframework:spring-core:4.2.5.RELEASE'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+mainClassName="uk.gov.digital.ho.proving.income.datastore.mongobd.Mongo"
